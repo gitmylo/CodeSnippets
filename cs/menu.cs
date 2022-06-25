@@ -35,6 +35,10 @@ namespace SimpleMenu
                     {
                         Console.WriteLine("\tInvalid choice");
                     }
+                    else
+                    {
+                        optionsNumbered[choice].action();
+                    }
                 }
                 else
                 {
