@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TextGenerationML.Menus
+namespace Menus
 {
     public class Menu
     {
