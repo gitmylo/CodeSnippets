@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimpleMenu
+namespace TextGenerationML.Menus
 {
     public class Menu
     {
@@ -19,30 +19,35 @@ namespace SimpleMenu
             Console.Clear();
             Console.WriteLine(Title);
             Dictionary<int, MenuOption> optionsNumbered = new Dictionary<int, MenuOption>();
-            for (int i = 0; i < options.Count; i++)
+            for (int i = 1; i <= options.Count; i++)
             {
-                optionsNumbered.Add(i, options[i]);
-                Console.WriteLine("\t[" + i + "]: " + options[i].Title);
+                optionsNumbered.Add(i, options[i-1]);
+                Console.WriteLine("\t[" + i + "]: " + options[i-1].Title);
             }
+            Console.WriteLine("\n\t[0]: Back/Exit\n");
             int choice = -1;
-            while (choice < 0 || choice >= options.Count)
+            while (choice < 0 || choice > options.Count)
             {
                 Console.Write("\tEnter your choice: ");
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out choice))
                 {
-                    if (choice < 0 || choice >= options.Count)
+                    if (choice < 0 || choice > options.Count)
                     {
                         Console.WriteLine("\tInvalid choice");
                     }
                     else
                     {
-                        optionsNumbered[choice].action();
+                        if (choice != 0)
+                        {
+                            optionsNumbered[choice].action();
+                        }
                     }
                 }
                 else
                 {
                     Console.WriteLine("\tInvalid choice");
+                    show();
                 }
             }
         }
